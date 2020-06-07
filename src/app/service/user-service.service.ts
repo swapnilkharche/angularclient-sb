@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+  private usersUrl: string;
   // tslint:disable-next-line:ban-types
-  constructor(private http: HttpClient, private usersUrl: string) {
+  constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:5000/jpa/users';
    }
 
@@ -16,7 +17,7 @@ export class UserService {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  // public save(user: User) {
-  //   return this.http.post<User>(this.usersUrl, user);
-  // }
+  public save(user: User) {
+    return this.http.post<User>(this.usersUrl, user);
+  }
 }
